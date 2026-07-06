@@ -86,6 +86,7 @@
     }
   },
   "devDependencies": {
+    "@grapesjs/studio-sdk": "^1.1.1",
     "@playwright/test": "^1.49.1",
     "@types/node": "^20.19.43",
     "@vitest/coverage-v8": "^2.1.9",

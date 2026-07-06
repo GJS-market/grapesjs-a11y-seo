@@ -10,26 +10,77 @@
         margin: 0;
         height: 100%;
       }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
       #gjs {
-        height: 100%;
+        flex: 1;
+        min-height: 0;
+      }
+      .demo-bar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+        background: #0b0e14;
+        color: #e6e6e6;
+        border-bottom: 1px solid #222;
+        font: 13px system-ui, sans-serif;
+      }
+      .demo-bar .brand {
+        font-weight: 600;
+        margin-right: 4px;
+      }
+      .demo-bar .brand small {
+        font-weight: 400;
+        opacity: 0.6;
+      }
+      .demo-switch {
+        display: inline-flex;
+        background: #161b24;
+        border: 1px solid #2a3341;
+        border-radius: 8px;
+        padding: 2px;
+      }
+      .demo-switch button {
+        appearance: none;
+        border: 0;
+        background: transparent;
+        color: #cbd5e1;
+        font: inherit;
+        padding: 5px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 120ms, color 120ms;
+      }
+      .demo-switch button:hover {
+        color: #fff;
+      }
+      .demo-switch button.is-active {
+        background: #5b8cff;
+        color: #fff;
+        font-weight: 600;
       }
       .demo-hint {
-        position: fixed;
-        bottom: 8px;
-        left: 8px;
-        z-index: 5;
-        font: 12px system-ui, sans-serif;
-        background: #111;
-        color: #eee;
-        padding: 6px 10px;
-        border-radius: 6px;
-        opacity: 0.85;
+        margin-left: auto;
+        opacity: 0.7;
+      }
+      .demo-hint b {
+        color: #fff;
       }
     </style>
   </head>
   <body>
+    <div class="demo-bar">
+      <span class="brand">grapesjs-a11y-seo <small>demo</small></span>
+      <div class="demo-switch" role="group" aria-label="Editor">
+        <button type="button" data-mode="plain" aria-pressed="true">GrapesJS</button>
+        <button type="button" data-mode="studio" aria-pressed="false">GrapesJS Studio</button>
+      </div>
+      <span class="demo-hint">Press <b>Ctrl/⌘ + Shift + A</b> or click the ♿ button to open the auditor.</span>
+    </div>
     <div id="gjs"></div>
-    <div class="demo-hint">Press <b>Ctrl/⌘ + Shift + A</b> or click the ♿ button to open the auditor.</div>
     <script type="module" src="./sandbox.js"></script>
   </body>
 </html>

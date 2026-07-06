@@ -1,0 +1,13 @@
+# Netlify deploy config for the demo site (grapesjs-a11y-seo.netlify.app).
+# The published package is unaffected — this only builds the demo/ folder.
+[build]
+  command = "npm run build:demo"
+  publish = "demo-dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Set the Studio SDK license in the Netlify UI (Site settings → Environment
+# variables) as VITE_STUDIO_LICENSE so it is available at build time. A
+# domain-locked client key is not a secret, but keeping it out of the repo lets
+# you rotate it without a commit.

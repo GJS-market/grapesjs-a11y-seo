@@ -33,10 +33,11 @@ Built by [gjs.market](https://gjs.market) for the GrapesJS community — same DN
 
 ## Live demo
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/GJS-market/grapesjs-a11y-seo)
+**▶ [grapesjs-a11y-seo.netlify.app](https://grapesjs-a11y-seo.netlify.app/)**
 
-Boots the [`demo/`](./demo) project in the browser — press **Ctrl/⌘ + Shift + A** or click
-the ♿ button to open the auditor. Or run it locally with `npm run dev`.
+Try the auditor on a deliberately-broken page, and use the top switcher to run it inside
+**plain GrapesJS** or **GrapesJS Studio**. Press **Ctrl/⌘ + Shift + A** or click the ♿ button
+to open the auditor. Or run it locally with `npm run dev`.
 
 <!-- TODO: drop a short screen capture at demo/demo.gif and uncomment:
 ![grapesjs-a11y-seo in action](./demo/demo.gif)

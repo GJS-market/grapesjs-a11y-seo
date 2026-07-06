@@ -8,9 +8,13 @@ import '@grapesjs/studio-sdk/style';
 import a11ySeo from '../src/index.ts';
 import { params, seedPages, assetList, a11yOpts } from './shared.js';
 
+// License precedence: build-time env (VITE_STUDIO_LICENSE, e.g. from Netlify) →
+// ?studioLicense= override → 'DEV' (any key works on localhost).
+const licenseKey = import.meta.env.VITE_STUDIO_LICENSE || params.get('studioLicense') || 'DEV';
+
 createStudioEditor({
   root: '#gjs',
-  licenseKey: params.get('studioLicense') || 'DEV',
+  licenseKey,
   project: {
     type: 'web',
     default: {

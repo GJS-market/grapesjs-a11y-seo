@@ -19,6 +19,10 @@ Every accessibility finding is **bound to the exact GrapesJS component**: click 
 
 Built by [gjs.market](https://gjs.market) for the GrapesJS community — same DNA as [`grapesjs-devtools`](https://github.com/GJS-market/grapesjs-devtools). **Zero runtime dependencies** in the browser (axe-core is an optional peer; linkedom is used only by the `./ci` entry).
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/GJS-market/grapesjs-a11y-seo/main/assets/screenshot-a11y.png" alt="The accessibility auditor open beside the GrapesJS canvas: an overall score with error/warning/info counts and a list of findings (missing alt, low contrast, empty link, unlabeled form control, invalid ARIA role), each with Show, Fix, Learn and Won't-fix actions" width="100%" />
+</p>
+
 ## Why not just run axe in the console?
 
 | | grapesjs-a11y-seo | axe-core in console | Lighthouse CI |

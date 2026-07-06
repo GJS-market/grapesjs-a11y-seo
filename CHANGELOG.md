@@ -4,6 +4,12 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [2.3.2] - 2026-07-07
+
+### Docs
+- Added a screenshot of the accessibility auditor (canvas + findings panel) to the README
+  and the npm page.
+
 ## [2.3.1] - 2026-07-07
 
 ### Fixed

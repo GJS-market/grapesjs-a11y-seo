@@ -4,6 +4,19 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [2.3.1] - 2026-07-07
+
+### Fixed
+- **In-editor "GitHub" footer link** now points to the canonical repository
+  (`github.com/GJS-market/grapesjs-a11y-seo`) instead of the old placeholder. The
+  `repository`/`bugs` URLs in `package.json` were corrected to match.
+
+### Docs
+- Added a project banner (rendered on the README and the npm page), npm/CI/license/bundle
+  badges, and a hosted live demo at
+  [grapesjs-a11y-seo.netlify.app](https://grapesjs-a11y-seo.netlify.app/) with a switcher
+  between plain **GrapesJS** and **GrapesJS Studio**.
+
 ## [2.3.0] - 2026-07-06
 
 ### Added

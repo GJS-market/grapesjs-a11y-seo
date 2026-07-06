@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://raw.githubusercontent.com/GJS-market/grapesjs-a11y-seo/main/assets/banner.png" alt="grapesjs-a11y-seo — Lighthouse for GrapesJS: a live WCAG 2.2 accessibility auditor and SEO metadata manager inside the editor, with one-click quick-fixes" width="100%" />
+</p>
+
 # grapesjs-a11y-seo
 
 ### Lighthouse for GrapesJS — live WCAG accessibility + SEO, right inside the editor

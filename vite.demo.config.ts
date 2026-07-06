@@ -13,5 +13,10 @@ export default defineConfig({
     outDir: fileURLToPath(new URL('./demo-dist', import.meta.url)),
     emptyOutDir: true,
     sourcemap: false,
+    // Bundle ALL CSS into one upfront file. With code-splitting on, Vite
+    // mis-injects the async chunks' CSS (the 1 MB Studio SDK stylesheet never
+    // loads, leaving Studio mode unstyled). One file is simplest and correct
+    // for a demo; both modes get every style regardless of which one boots.
+    cssCodeSplit: false,
   },
 });

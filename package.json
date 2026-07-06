@@ -1,0 +1,103 @@
+{
+  "name": "grapesjs-a11y-seo",
+  "version": "2.3.0",
+  "description": "Lighthouse for GrapesJS — an in-editor accessibility auditor (WCAG 2.1/2.2) and SEO metadata manager. Every finding is bound to the exact component: click to select, scroll and quick-fix.",
+  "type": "module",
+  "main": "./dist/grapesjs-a11y-seo.umd.cjs",
+  "module": "./dist/grapesjs-a11y-seo.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/grapesjs-a11y-seo.js",
+      "require": "./dist/grapesjs-a11y-seo.umd.cjs"
+    },
+    "./ci": {
+      "types": "./dist/ci/index.d.ts",
+      "import": "./dist/ci/index.js"
+    },
+    "./style.css": "./dist/grapesjs-a11y-seo.css",
+    "./dist/grapesjs-a11y-seo.css": "./dist/grapesjs-a11y-seo.css"
+  },
+  "bin": {
+    "grapesjs-a11y-seo-ci": "./dist/ci/cli.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "README.md",
+    "DOCS.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "keywords": [
+    "grapesjs",
+    "grapesjs-plugin",
+    "accessibility",
+    "web-accessibility",
+    "a11y",
+    "wcag",
+    "wcag-2.2",
+    "seo",
+    "seo-tools",
+    "audit",
+    "contrast",
+    "meta-tags",
+    "json-ld",
+    "sitemap",
+    "open-graph"
+  ],
+  "author": "gjs.market",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://gjs.market",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GJS-market/grapesjs-a11y-seo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GJS-market/grapesjs-a11y-seo/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vite --open /demo/index.html",
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && vite build && npm run build:ci",
+    "build:ci": "vite build --config vite.ci.config.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "prepublishOnly": "npm run test && npm run build"
+  },
+  "peerDependencies": {
+    "grapesjs": ">=0.21.0"
+  },
+  "peerDependenciesMeta": {
+    "axe-core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^20.19.43",
+    "@vitest/coverage-v8": "^2.1.9",
+    "axe-core": "^4.10.2",
+    "grapesjs": "^0.21.13",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vite-plugin-dts": "^4.3.0",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "linkedom": "^0.18.12"
+  }
+}

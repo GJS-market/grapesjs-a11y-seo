@@ -1,0 +1,789 @@
+/* grapesjs-a11y-seo — panel + overlay styles. Namespaced under .gjs-as-* to
+   avoid clashing with the host app or GrapesJS. Theme via CSS variables. */
+
+.gjs-as-root {
+  --as-bg: #1e1f24;
+  --as-bg-2: #26272e;
+  --as-bg-3: #2f3038;
+  --as-fg: #e6e6ea;
+  --as-fg-dim: #a0a0ab;
+  --as-border: #3a3b44;
+  --as-accent: #5b8cff;
+  --as-error: #ff5c6c;
+  --as-warning: #ffb454;
+  --as-info: #55c1ff;
+  --as-ok: #46c17f;
+  --as-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+  --as-radius: 8px;
+  --as-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.gjs-as-root.gjs-as-light {
+  --as-bg: #ffffff;
+  --as-bg-2: #f4f5f7;
+  --as-bg-3: #e9ebef;
+  --as-fg: #1c1d22;
+  --as-fg-dim: #6a6c78;
+  --as-border: #d9dbe1;
+  --as-accent: #2f6bff;
+  --as-error: #d13440;
+  --as-warning: #b26a00;
+  --as-info: #0b74c4;
+  --as-ok: #1f9d57;
+  --as-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+}
+
+.gjs-as-root {
+  position: fixed;
+  z-index: 9999;
+  background: var(--as-bg);
+  color: var(--as-fg);
+  font-family: var(--as-font);
+  font-size: 13px;
+  line-height: 1.4;
+  box-shadow: var(--as-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.gjs-as-root *,
+.gjs-as-root *::before,
+.gjs-as-root *::after {
+  box-sizing: border-box;
+}
+
+.gjs-as-pos-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 380px;
+  border-left: 1px solid var(--as-border);
+}
+.gjs-as-pos-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 380px;
+  border-right: 1px solid var(--as-border);
+}
+.gjs-as-pos-bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 300px;
+  border-top: 1px solid var(--as-border);
+}
+.gjs-as-hidden {
+  display: none !important;
+}
+.gjs-as-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.gjs-as-tab[aria-selected='true'] {
+  color: var(--as-fg);
+}
+
+/* Embedded variant (mounted inside another panel, e.g. grapesjs-devtools) */
+.gjs-as-root.gjs-as-embedded {
+  position: static;
+  width: 100%;
+  height: 100%;
+  box-shadow: none;
+  border: 0;
+}
+.gjs-as-dt-pane {
+  height: 100%;
+}
+
+/* Header */
+.gjs-as-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 8px;
+  background: var(--as-bg-2);
+  border-bottom: 1px solid var(--as-border);
+  flex: none;
+}
+.gjs-as-tabs {
+  display: flex;
+  gap: 2px;
+}
+.gjs-as-tab {
+  background: transparent;
+  border: none;
+  color: var(--as-fg-dim);
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+}
+.gjs-as-tab:hover {
+  color: var(--as-fg);
+  background: var(--as-bg-3);
+}
+.gjs-as-tab.gjs-as-active {
+  color: var(--as-fg);
+  background: var(--as-bg-3);
+}
+.gjs-as-spacer {
+  flex: 1;
+}
+.gjs-as-iconbtn {
+  background: transparent;
+  border: none;
+  color: var(--as-fg-dim);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  font: inherit;
+  line-height: 1;
+}
+.gjs-as-iconbtn:hover {
+  color: var(--as-fg);
+  background: var(--as-bg-3);
+}
+.gjs-as-iconbtn.gjs-as-active {
+  color: var(--as-accent);
+}
+
+/* Body */
+.gjs-as-body {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+.gjs-as-pane {
+  display: none;
+  height: 100%;
+}
+.gjs-as-pane.gjs-as-active {
+  display: block;
+}
+
+/* Toolbar (audit controls) */
+.gjs-as-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-bottom: 1px solid var(--as-border);
+  position: sticky;
+  top: 0;
+  background: var(--as-bg);
+  z-index: 1;
+  flex-wrap: wrap;
+}
+.gjs-as-btn {
+  background: var(--as-accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font: inherit;
+}
+.gjs-as-btn:hover {
+  filter: brightness(1.08);
+}
+.gjs-as-btn.gjs-as-ghost {
+  background: var(--as-bg-3);
+  color: var(--as-fg);
+}
+/* Checkbox rows: the box sits inline before its label, never stretched by the
+   generic .gjs-as-field input rule. The label.gjs-as-check selector outranks
+   `.gjs-as-field label` so the field's block/margin defaults don't stack it. */
+.gjs-as-check,
+.gjs-as-field label.gjs-as-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 0;
+  color: var(--as-fg-dim);
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.4;
+  cursor: pointer;
+  user-select: none;
+}
+.gjs-as-check input[type='checkbox'] {
+  width: auto;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--as-accent);
+  cursor: pointer;
+}
+
+/* Score */
+.gjs-as-score {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--as-border);
+}
+.gjs-as-score-ring {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #fff;
+  flex: none;
+}
+.gjs-as-counts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.gjs-as-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.gjs-as-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.gjs-as-dot-error { background: var(--as-error); }
+.gjs-as-dot-warning { background: var(--as-warning); }
+.gjs-as-dot-info { background: var(--as-info); }
+
+/* Filters */
+.gjs-as-filters {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--as-border);
+}
+.gjs-as-chip {
+  background: var(--as-bg-3);
+  border: 1px solid transparent;
+  color: var(--as-fg-dim);
+  border-radius: 999px;
+  padding: 3px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.gjs-as-chip.gjs-as-on {
+  color: var(--as-fg);
+  border-color: var(--as-accent);
+}
+.gjs-as-select {
+  background: var(--as-bg-3);
+  color: var(--as-fg);
+  border: 1px solid var(--as-border);
+  border-radius: 6px;
+  padding: 3px 6px;
+  font: inherit;
+}
+
+/* Violation list */
+.gjs-as-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gjs-as-item {
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--as-border);
+  cursor: default;
+}
+.gjs-as-item:hover {
+  background: var(--as-bg-2);
+}
+.gjs-as-sev {
+  width: 8px;
+  border-radius: 4px;
+  flex: none;
+  align-self: stretch;
+}
+.gjs-as-sev-error { background: var(--as-error); }
+.gjs-as-sev-warning { background: var(--as-warning); }
+.gjs-as-sev-info { background: var(--as-info); }
+.gjs-as-item-main {
+  flex: 1;
+  min-width: 0;
+}
+.gjs-as-item-msg {
+  color: var(--as-fg);
+}
+.gjs-as-item-meta {
+  color: var(--as-fg-dim);
+  font-size: 11px;
+  margin-top: 3px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gjs-as-badge {
+  background: var(--as-bg-3);
+  border: 1px solid var(--as-border);
+  border-radius: 999px;
+  padding: 0 7px;
+  color: var(--as-fg);
+}
+.gjs-as-item-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.gjs-as-link {
+  color: var(--as-accent);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+}
+.gjs-as-link:hover {
+  text-decoration: underline;
+}
+.gjs-as-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--as-fg-dim);
+}
+
+/* SEO panel */
+.gjs-as-form {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.gjs-as-field label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+.gjs-as-field input,
+.gjs-as-field textarea,
+.gjs-as-field select {
+  width: 100%;
+  background: var(--as-bg-2);
+  color: var(--as-fg);
+  border: 1px solid var(--as-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font: inherit;
+}
+.gjs-as-field textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+/* Image field: URL input + Asset Manager browse button on one row */
+.gjs-as-input-row {
+  display: flex;
+  gap: 6px;
+  align-items: stretch;
+}
+.gjs-as-input-row input {
+  flex: 1;
+  min-width: 0;
+}
+.gjs-as-asset-btn {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  background: var(--as-bg-2);
+  color: var(--as-fg);
+  border: 1px solid var(--as-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+}
+.gjs-as-asset-btn:hover {
+  border-color: var(--as-accent);
+}
+.gjs-as-counter {
+  font-size: 11px;
+  margin-top: 3px;
+  color: var(--as-fg-dim);
+}
+.gjs-as-counter.gjs-as-good { color: var(--as-ok); }
+.gjs-as-counter.gjs-as-warn { color: var(--as-warning); }
+.gjs-as-counter.gjs-as-bad { color: var(--as-error); }
+.gjs-as-row {
+  display: flex;
+  gap: 10px;
+}
+.gjs-as-row .gjs-as-field {
+  flex: 1;
+}
+.gjs-as-section-title {
+  font-weight: 600;
+  margin: 4px 0;
+  padding-top: 8px;
+  border-top: 1px solid var(--as-border);
+}
+
+/* Previews */
+.gjs-as-preview {
+  background: var(--as-bg-2);
+  border: 1px solid var(--as-border);
+  border-radius: var(--as-radius);
+  padding: 12px;
+  margin: 6px 0;
+}
+.gjs-as-serp-title {
+  color: #8ab4f8;
+  font-size: 16px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gjs-as-serp-url {
+  color: var(--as-ok);
+  font-size: 12px;
+}
+.gjs-as-serp-desc {
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+.gjs-as-card {
+  border: 1px solid var(--as-border);
+  border-radius: var(--as-radius);
+  overflow: hidden;
+}
+.gjs-as-card-img {
+  width: 100%;
+  aspect-ratio: 1.91 / 1;
+  background: var(--as-bg-3) center/cover no-repeat;
+  display: grid;
+  place-items: center;
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+.gjs-as-card-body {
+  padding: 8px 10px;
+}
+.gjs-as-card-title {
+  font-weight: 600;
+}
+.gjs-as-card-desc {
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+
+/* Resize handle */
+.gjs-as-resize {
+  position: absolute;
+  background: transparent;
+  z-index: 2;
+}
+.gjs-as-pos-right .gjs-as-resize { left: 0; top: 0; bottom: 0; width: 6px; cursor: ew-resize; }
+.gjs-as-pos-left .gjs-as-resize { right: 0; top: 0; bottom: 0; width: 6px; cursor: ew-resize; }
+.gjs-as-pos-bottom .gjs-as-resize { top: 0; left: 0; right: 0; height: 6px; cursor: ns-resize; }
+
+/* Overlay boxes */
+.gjs-as-overlay-box {
+  outline-offset: -1px;
+  border-radius: 2px;
+}
+.gjs-as-overlay-box[data-severity='error'] {
+  outline: 2px solid var(--as-error, #ff5c6c);
+  background: rgba(255, 92, 108, 0.12);
+}
+.gjs-as-overlay-box[data-severity='warning'] {
+  outline: 2px solid var(--as-warning, #ffb454);
+  background: rgba(255, 180, 84, 0.12);
+}
+.gjs-as-overlay-box[data-severity='info'] {
+  outline: 2px dashed var(--as-info, #55c1ff);
+  background: rgba(85, 193, 255, 0.1);
+}
+.gjs-as-overlay-label {
+  position: absolute;
+  top: -18px;
+  left: 0;
+  font: 11px/1.4 var(--as-font, sans-serif);
+  background: #000;
+  color: #fff;
+  padding: 0 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.gjs-as-overlay-persistent-box {
+  outline-style: dashed !important;
+}
+
+/* Focus-order visualizer */
+.gjs-as-focus-dot {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #5b8cff;
+  color: #fff;
+  font: 700 12px/22px var(--as-font, sans-serif);
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.gjs-as-focus-line {
+  border-top: 2px dashed #5b8cff;
+  opacity: 0.8;
+}
+
+/* Layer Manager badges */
+.gjs-as-layer-badge {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin: 0 6px;
+  vertical-align: middle;
+}
+.gjs-as-layer-badge-error { background: #ff5c6c; }
+.gjs-as-layer-badge-warning { background: #ffb454; }
+.gjs-as-layer-badge-info { background: #55c1ff; }
+
+/* Accessibility Tree preview */
+.gjs-as-tree {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--as-border);
+  background: var(--as-bg-2);
+}
+.gjs-as-tree-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.gjs-as-tree-row {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+.gjs-as-tree-key {
+  color: var(--as-fg-dim);
+  min-width: 54px;
+}
+.gjs-as-tree-val {
+  color: var(--as-fg);
+  word-break: break-word;
+}
+
+/* JSON-LD structured-data editor */
+.gjs-as-ld-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.gjs-as-ld-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.gjs-as-ld-chip:hover {
+  color: var(--as-fg);
+  border-color: var(--as-accent);
+}
+.gjs-as-ld-chip-icon {
+  font-size: 13px;
+}
+.gjs-as-ld-empty {
+  color: var(--as-fg-dim);
+  font-size: 12px;
+  padding: 10px 12px;
+  border: 1px dashed var(--as-border);
+  border-radius: var(--as-radius);
+  text-align: center;
+}
+
+.gjs-as-ld-card {
+  border: 1px solid var(--as-border);
+  border-radius: var(--as-radius);
+  background: var(--as-bg-2);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.gjs-as-ld-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 9px 10px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--as-border);
+  color: var(--as-fg);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.gjs-as-ld-header:hover {
+  background: var(--as-bg-3);
+}
+.gjs-as-ld-icon {
+  font-size: 15px;
+}
+.gjs-as-ld-type {
+  font-weight: 600;
+  flex: 1;
+}
+.gjs-as-ld-chevron {
+  color: var(--as-fg-dim);
+  transition: transform 0.15s ease;
+}
+.gjs-as-ld-chevron.gjs-as-collapsed {
+  transform: rotate(-90deg);
+}
+.gjs-as-ld-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.gjs-as-ld-pill-ok {
+  background: color-mix(in srgb, var(--as-ok) 22%, transparent);
+  color: var(--as-ok);
+}
+.gjs-as-ld-pill-warn {
+  background: color-mix(in srgb, var(--as-warning) 22%, transparent);
+  color: var(--as-warning);
+}
+.gjs-as-ld-actions {
+  display: flex;
+  gap: 2px;
+  justify-content: flex-end;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--as-border);
+}
+.gjs-as-ld-body {
+  padding: 10px;
+}
+.gjs-as-ld-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gjs-as-ld-field .gjs-as-req {
+  color: var(--as-error);
+}
+.gjs-as-ld-field.gjs-as-invalid input,
+.gjs-as-ld-field.gjs-as-invalid textarea {
+  border-color: var(--as-error);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--as-error) 40%, transparent);
+}
+.gjs-as-ld-list {
+  margin-top: 4px;
+}
+.gjs-as-ld-subcard {
+  border: 1px solid var(--as-border);
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+  background: var(--as-bg);
+}
+.gjs-as-ld-subcard-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.gjs-as-ld-index {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--as-accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.gjs-as-ld-subcard-label {
+  flex: 1;
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+.gjs-as-ld-add {
+  width: 100%;
+  padding: 7px;
+  background: transparent;
+  border: 1px dashed var(--as-border);
+  border-radius: 6px;
+  color: var(--as-accent);
+  cursor: pointer;
+  font: inherit;
+}
+.gjs-as-ld-add:hover {
+  border-color: var(--as-accent);
+  background: var(--as-bg-3);
+}
+.gjs-as-ld-advanced {
+  margin-top: 10px;
+}
+.gjs-as-ld-advanced summary {
+  cursor: pointer;
+  color: var(--as-fg-dim);
+  font-size: 12px;
+}
+.gjs-as-ld-json-tools {
+  display: flex;
+  gap: 12px;
+  margin: 6px 0;
+}
+.gjs-as-ld-json {
+  width: 100%;
+  min-height: 120px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  background: var(--as-bg);
+  color: var(--as-fg);
+  border: 1px solid var(--as-border);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+/* Settings rules list */
+.gjs-as-rules {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 12px;
+}
+
+/* About / footer */
+.gjs-as-footer {
+  padding: 10px 12px;
+  border-top: 1px solid var(--as-border);
+  color: var(--as-fg-dim);
+  font-size: 11px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.gjs-as-footer a {
+  color: var(--as-accent);
+  text-decoration: none;
+}
+.gjs-as-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>grapesjs-a11y-seo — Lighthouse for GrapesJS (demo)</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      #gjs {
+        height: 100%;
+      }
+      .demo-hint {
+        position: fixed;
+        bottom: 8px;
+        left: 8px;
+        z-index: 5;
+        font: 12px system-ui, sans-serif;
+        background: #111;
+        color: #eee;
+        padding: 6px 10px;
+        border-radius: 6px;
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="gjs"></div>
+    <div class="demo-hint">Press <b>Ctrl/⌘ + Shift + A</b> or click the ♿ button to open the auditor.</div>
+    <script type="module" src="./sandbox.js"></script>
+  </body>
+</html>

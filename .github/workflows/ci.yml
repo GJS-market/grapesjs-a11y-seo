@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'claude/**']
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test
+      - name: Coverage report
+        run: npm run coverage
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          if-no-files-found: ignore
+      - name: Build
+        run: npm run build
+      - name: CLI smoke test
+        run: |
+          printf '<img src="x.jpg">' > /tmp/bad.html
+          node dist/ci/cli.js /tmp/bad.html && echo "expected non-zero" && exit 1 || echo "CLI failed as expected on bad HTML"
+      - name: Package contents
+        run: npm pack --dry-run
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E tests
+        run: npm run test:e2e

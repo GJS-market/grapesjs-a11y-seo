@@ -7,6 +7,8 @@ export default defineConfig({
       entry: 'src/index.ts',
       name: 'grapesjsA11ySeo',
       formats: ['es', 'umd'],
+      // ESM for `import`, UMD (.umd.cjs) for `require`. The browser UMD (.umd.js,
+      // with axe-core inlined) is emitted by a second pass — vite.browser.config.ts.
       fileName: (format) =>
         format === 'es' ? 'grapesjs-a11y-seo.js' : 'grapesjs-a11y-seo.umd.cjs',
     },

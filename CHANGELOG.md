@@ -4,6 +4,19 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [2.3.3] - 2026-07-10
+
+### Added
+- **Browser UMD build for `<script>` / CDN use.** A real `dist/grapesjs-a11y-seo.umd.js`
+  is now emitted (in addition to the ESM and `.umd.cjs` entries), attaching to the
+  `window.grapesjsA11ySeo` global with GrapesJS read from `window.grapesjs`. The package
+  now advertises `browser`, `unpkg`, and `jsdelivr` fields plus a `grapesjs` marketplace
+  metadata block, so it installs and runs directly in the browser (e.g. the GJS Market
+  catalog and the WordPress builder).
+- `axe-core` is bundled into the browser UMD only, so a plain `<script>` is
+  self-contained. The npm ESM/CJS builds keep it as an optional, lazy-loaded external —
+  `import` consumers' bundles stay tiny.
+
 ## [2.3.2] - 2026-07-07
 
 ### Docs

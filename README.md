@@ -81,6 +81,24 @@ const editor = grapesjs.init({
 
 Open the panel with the hotkey, the ♿ toolbar button, or `editor.A11ySeo.open()`.
 
+### Browser `<script>` / CDN
+
+No bundler? Load GrapesJS, then the UMD build — it registers the global
+`window.grapesjsA11ySeo` (axe-core is bundled in, so nothing else is needed):
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/grapesjs-a11y-seo/dist/grapesjs-a11y-seo.css" />
+<script src="https://unpkg.com/grapesjs"></script>
+<script src="https://unpkg.com/grapesjs-a11y-seo"></script>
+<script>
+  const editor = grapesjs.init({
+    container: '#gjs',
+    plugins: [window.grapesjsA11ySeo],
+  });
+</script>
+```
+
 ## What it checks
 
 | # | Rule | Catches | WCAG |

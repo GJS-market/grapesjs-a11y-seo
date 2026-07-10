@@ -63,8 +63,9 @@ interface AxeLike {
 
 async function loadAxe(): Promise<AxeLike> {
   try {
-    // Kept as a bare dynamic import so bundlers externalize it.
-    const mod = (await import(/* @vite-ignore */ 'axe-core')) as unknown as {
+    // Dynamic import: externalized in the npm ESM/CJS builds (kept lazy + tiny),
+    // but inlined into the browser UMD build so a plain <script> is self-contained.
+    const mod = (await import('axe-core')) as unknown as {
       default?: AxeLike;
       run?: AxeLike['run'];
     };

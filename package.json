@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-a11y-seo",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Lighthouse for GrapesJS — an in-editor accessibility auditor (WCAG 2.1/2.2) and SEO metadata manager. Every finding is bound to the exact component: click to select, scroll and quick-fix.",
   "main": "dist/index.js",
   "browser": "dist/index.js",
@@ -18,7 +18,14 @@
     "browser": "dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src",
+    "webpack.config.js",
+    "tsconfig.json",
+    "README.md",
+    "DOCS.md",
+    "CHANGELOG.md",
+    "LICENSE"
   ],
   "keywords": [
     "grapesjs",

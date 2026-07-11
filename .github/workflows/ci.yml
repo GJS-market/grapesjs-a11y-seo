@@ -29,10 +29,11 @@ jobs:
           if-no-files-found: ignore
       - name: Build
         run: npm run build
-      - name: CLI smoke test
+      - name: Bundle smoke test
         run: |
-          printf '<img src="x.jpg">' > /tmp/bad.html
-          node dist/ci/cli.js /tmp/bad.html && echo "expected non-zero" && exit 1 || echo "CLI failed as expected on bad HTML"
+          test -f dist/index.js || { echo "dist/index.js missing"; exit 1; }
+          grep -q "grapesjsA11ySeo" dist/index.js || { echo "UMD global grapesjsA11ySeo missing"; exit 1; }
+          echo "dist/index.js exposes grapesjsA11ySeo"
       - name: Package contents
         run: npm pack --dry-run
 

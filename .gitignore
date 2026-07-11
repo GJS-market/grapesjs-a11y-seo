@@ -1,5 +1,6 @@
 node_modules
-dist
+# dist/ is committed: the single self-contained bundle (dist/index.js) is
+# browseable on GitHub and servable via the jsdelivr /gh/ CDN path.
 demo-dist
 *.log
 .DS_Store

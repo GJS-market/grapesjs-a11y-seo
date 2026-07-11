@@ -107,21 +107,6 @@ schemas live on each template (`fields: FieldDef[]`); add a field by appending a
 Mark a finding **Won't fix** to exclude it from the score and default list; it stays under the
 *Accepted* filter. Stored by a stable fingerprint in `projectData.a11ySeoState.baseline`.
 
-## CI / headless
-
-```bash
-npx grapesjs-a11y-seo-ci ./dist/*.html --fail-on error --level AA --version 2.2 [--json]
-```
-
-```ts
-import { runAuditHeadless } from 'grapesjs-a11y-seo/ci';
-const violations = runAuditHeadless(htmlString, { wcagLevel: 'AA', disableRules: ['lang'] });
-```
-
-Layout-dependent rules (`contrast`, `target-size`, `font-size`, `visual-focus-mismatch`) are
-skipped headless (linkedom has no layout). Findings carry no `component`. The browser bundle
-stays zero-dep; linkedom is only pulled in by the `./ci` entry.
-
 ## Writing a custom rule
 
 Rules are pure functions over an `AuditContext`. They only read the canvas — mutations happen through the component API in `fix`.

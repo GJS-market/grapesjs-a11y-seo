@@ -62,7 +62,7 @@ npm i grapesjs-a11y-seo
 ```js
 import grapesjs from 'grapesjs';
 import a11ySeo from 'grapesjs-a11y-seo';
-import 'grapesjs-a11y-seo/style.css';
+// Styles are injected automatically — no separate CSS import needed.
 
 const editor = grapesjs.init({
   container: '#gjs',
@@ -83,12 +83,12 @@ Open the panel with the hotkey, the ♿ toolbar button, or `editor.A11ySeo.open(
 
 ### Browser `<script>` / CDN
 
-No bundler? Load GrapesJS, then the UMD build — it registers the global
-`window.grapesjsA11ySeo` (axe-core is bundled in, so nothing else is needed):
+No bundler? Load GrapesJS, then the plugin — a single self-contained UMD bundle
+that registers the global `window.grapesjsA11ySeo` and injects its own CSS
+(axe-core is bundled in too, so nothing else is needed):
 
 ```html
 <link rel="stylesheet" href="https://unpkg.com/grapesjs/dist/css/grapes.min.css" />
-<link rel="stylesheet" href="https://unpkg.com/grapesjs-a11y-seo/dist/grapesjs-a11y-seo.css" />
 <script src="https://unpkg.com/grapesjs"></script>
 <script src="https://unpkg.com/grapesjs-a11y-seo"></script>
 <script>
@@ -148,13 +148,7 @@ const xml  = seo.getSitemap('https://example.com');
   *Accepted* filter (persisted with the project).
 - **Settings tab**: content editors toggle rules, WCAG level/version, theme, engine and
   ignored selectors — saved with the project, no code needed.
-- **CI mode**: `npx grapesjs-a11y-seo-ci ./dist/*.html` audits exported HTML headless (exit
-  non-zero on failures). Also `import { runAuditHeadless } from 'grapesjs-a11y-seo/ci'`.
 - **i18n**: shipped `en` / `ru` / `es` bundles (`locale` option); fully overridable.
-
-```bash
-npx grapesjs-a11y-seo-ci ./dist/index.html --fail-on warning --level AA
-```
 
 ## Multi-page
 

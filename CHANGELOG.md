@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format is based on
 [Keep a Changelog](https://keepachangelog.com/) and the project adheres to
 [Semantic Versioning](https://semver.org/).
 
+## [2.3.4] - 2026-07-11
+
+### Changed
+- **Build switched to `grapesjs-cli`, producing one self-contained UMD bundle.** `dist/`
+  now contains exactly three files — `index.js`, `index.js.map`, `index.d.ts` — and the
+  build output is committed to the repo (browseable on GitHub, servable via the jsdelivr
+  `/gh/` path). `dist/index.js` registers `window.grapesjsA11ySeo`, keeps `grapesjs`
+  external, bundles axe-core, and **injects its own CSS** (no separate stylesheet to link).
+
+### Removed
+- The separate ESM / `.umd.cjs` entries and the standalone `.css` file (CSS is now injected
+  by the bundle). `import 'grapesjs-a11y-seo/style.css'` is no longer needed or available.
+- The headless CI auditor (`grapesjs-a11y-seo-ci` bin and the `grapesjs-a11y-seo/ci`
+  export). The in-editor auditor is unchanged.
+
 ## [2.3.3] - 2026-07-10
 
 ### Added
